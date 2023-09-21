@@ -65,6 +65,21 @@ int main() {
     unsigned long index = (pc >> 2) % 1024; // Use 1024 conjuntos
     unsigned long tag = pc >> 14; // Ajuste o número de bits de tag conforme necessário
 
+    vector<unsigned long> v;
+    unsigned long aux = 0x12345678;
+
+    for (int i = 0; i < 2000; i++) {
+        v.push_back(aux);
+        index = (aux >> 2) % 1024;
+        tag = aux >> 6;
+        //cout << hex << aux << endl;
+        cout << hex << index << "/" << tag << endl;
+
+        aux = aux + 4;
+
+        
+    }
+
     // Pesquisar na BTB
     if (btb.search(index, tag, target)) {
         cout << "Hit na BTB! O endereço de destino é 0x" << hex << target << endl;
